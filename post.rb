@@ -15,7 +15,8 @@ class Post
   end
 
   def save
-    file = File.new (file_path, "w:UTF-8")
+    file = File.new(file_path, 'w:UTF-8')
+    
 
 
     for item in to_strings do
