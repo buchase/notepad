@@ -1,5 +1,18 @@
 class Post
 
+  # Метод post_types класса Post, возвращает всех известных ему детей класса
+  # Post в виде массива классов.
+  def self.post_types
+    [Memo, Link, Task]
+  end
+
+  # Метод create класса Post динамически (в зависимости от параметра) создает
+  # объект нужного класса (Memo, Task или Link) из набора возможных детей,
+  # получая список с помощью метода post_types, объявленного выше.
+  def self.create(type_index)
+    return post_types[type_index].new
+  end
+
   def initialize
     @created_at = Time.now
     @text = nil
@@ -16,7 +29,6 @@ class Post
 
   def save
     file = File.new(file_path, 'w:UTF-8')
-    
 
 
     for item in to_strings do
